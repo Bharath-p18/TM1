@@ -1,0 +1,20 @@
+title           = Minimization  ; Title of run
+
+; Parameters describing what to do, when to stop and what to save
+integrator      = steep         ; Algorithm (steep = steepest descent minimization)
+emtol           = 1000.0        ; Stop minimization when the max force < 1000 kJ/mol/nm
+emstep          = 0.01          ; Energy step size
+nsteps          = 50000         ; Maximum number of minimization steps
+
+; Neighbor searching and interactions
+nstlist         = 20            ; Update neighbor list every 20 steps
+cutoff-scheme   = Verlet
+ns_type         = grid          ; Grid-based neighbor searching
+rlist           = 1.0           ; Short-range neighbor list cutoff
+coulombtype     = PME           ; Use PME for electrostatics
+fourierspacing  = 0.12
+pme_order       = 4
+rcoulomb        = 1.0           ; Electrostatic cutoff
+rvdw            = 1.0           ; Van der Waals cutoff
+pbc             = xyz           ; Periodic Boundary Conditions
+

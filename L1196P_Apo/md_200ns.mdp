@@ -1,0 +1,42 @@
+; Production MD – 100 ns, .xtc only, optimized
+integrator              = md
+dt                      = 0.002                   ; 2 fs
+nsteps                  = 100000000                ; 200 ns
+
+; Output control
+nstxout                 = 0                       ; no .trr positions
+nstvout                 = 0                       ; no .trr velocities
+nstfout                 = 0                       ; no .trr forces
+nstxout-compressed      = 5000                    ; write .xtc every 10 ps
+nstenergy               = 5000                    ; write energies every 10 ps
+nstlog                  = 5000                    ; log every 10 ps
+
+; Continuation from equilibration
+continuation            = yes
+constraint_algorithm    = lincs
+constraints             = h-bonds
+
+; Neighbor searching
+cutoff-scheme           = Verlet
+nstlist                 = 10
+rcoulomb                = 1.0
+rvdw                    = 1.0
+coulombtype             = PME
+pbc                     = xyz
+
+; Temperature coupling
+tcoupl                  = V-rescale
+tc-grps                 = System
+tau_t                   = 0.1
+ref_t                   = 300
+
+; Pressure coupling
+pcoupl                  = Parrinello-Rahman
+pcoupltype              = isotropic
+tau_p                   = 2.0
+ref_p                   = 1.0
+compressibility         = 4.5e-5
+
+; Velocity generation
+gen_vel                 = no
+
